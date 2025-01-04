@@ -128,5 +128,56 @@ carmen=# SELECT * FROM city WHERE population BETWEEN 91000 AND 91085;
  4060 | Santa Monica | USA         | California |      91084
 (8 rows)
 
---I'm guessing Santa Monica as its the closets
+--I'm guessing Santa Monica as its the closets to 91085
 
+-- Hungry for more?
+-- Some of the entries have gotten a bit messed up. For example, the capital of Brazil is not Brasï¿½lia, rather, it is Brasília. Update this entry to the correct spelling. Record your update, in the find_carmen.sql file (below I found Carmen), and do a query for one row and copy paste it to show the update.
+
+-- Update any other two entries that have gotten messed up.
+
+carmen=# SELECT * FROM city WHERE countrycode ='BRA' AND name LIKE '%Bras%';
+ id  |    name    | countrycode |     district     | population 
+-----+------------+-------------+------------------+------------
+ 211 | Brasï¿½lia | BRA         | Distrito Federal |    1969868
+(1 row)
+
+carmen=# UPDATE city SET name = 'Brasilia' WHERE id = 211;
+
+carmen=# SELECT * FROM city WHERE countrycode ='BRA' AND name LIKE '%Bras%';
+ id  |   name   | countrycode |     district     | population 
+-----+----------+-------------+------------------+------------
+ 211 | Brasilia | BRA         | Distrito Federal |    1969868
+(1 row)
+
+carmen=# UPDATE city SET district = 'Espírito Santo' WHERE district = 'Espï¿½rito Santo';
+UPDATE 7
+carmen=# SELECT * FROM city WHERE name LIKE '%Serra%';
+  id  |         name         | countrycode |     district      | population 
+------+----------------------+-------------+-------------------+------------
+  310 | Taboï¿½o da Serra    | BRA         | Sï¿½o Paulo       |     197550
+  370 | Itapecerica da Serra | BRA         | Sï¿½o Paulo       |     126672
+ 3170 | Serravalle           | SMR         | Serravalle/Dogano |       4802
+  265 | Serra                | BRA         | Espírito Santo    |     302666
+(4 rows)
+
+carmen=# UPDATE city SET district = 'Sao Paulo' WHERE district = 'Sï¿½o Paulo';
+UPDATE 69
+carmen=# SELECT * FROM city WHERE name LIKE '%Serra%';
+  id  |         name         | countrycode |     district      | population 
+------+----------------------+-------------+-------------------+------------
+  370 | Itapecerica da Serra | BRA         | Sao Paulo         |     126672
+ 3170 | Serravalle           | SMR         | Serravalle/Dogano |       4802
+  265 | Serra                | BRA         | Espírito Santo    |     302666
+  310 | Taboï¿½o da Serra    | BRA         | Sao Paulo         |     197550
+(4 rows)
+
+carmen=# UPDATE city SET name = 'Taboao da Serra' WHERE id = 310;
+UPDATE 1
+carmen=# SELECT * FROM city WHERE name LIKE '%Serra%';
+  id  |         name         | countrycode |     district      | population 
+------+----------------------+-------------+-------------------+------------
+  370 | Itapecerica da Serra | BRA         | Sao Paulo         |     126672
+ 3170 | Serravalle           | SMR         | Serravalle/Dogano |       4802
+  265 | Serra                | BRA         | Espírito Santo    |     302666
+  310 | Taboao da Serra      | BRA         | Sao Paulo         |     197550
+(4 rows)
